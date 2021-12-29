@@ -41,7 +41,7 @@ Use the [pricing calculator](https://cloud.google.com/products/calculator) to ge
 
 ## Before you begin
 
-This tutorial has below prerequisites 
+This tutorial has the below prerequisites:
 
 - A billing enabled Google Cloud account, see this [document](https://cloud.google.com/billing/docs/how-to/modify-project) for detailed instructions.
 - gcloud command line tool must be [installed]((https://cloud.google.com/anthos/multicluster-management/connect/prerequisites#install-cloud-sdk)) in your environment if not using Cloud shell.
@@ -51,19 +51,19 @@ This tutorial has below prerequisites
 
 ![Architecture](./architecture.png)
 
-## Create Servive Account
+## Create Service Account
 
-In this tutorial we use a specifc service account for building images and deploying to edge servers.
+Create a service account for building images and deploying to edge servers.
 
     export SERVICE_ACCT_NAME=edge-demo
     gcloud iam service-accounts create $SERVICE_ACCT_NAME
 
-We need grant user permission to impersonate the service account, to do this first we dump current configuration
+Grant user permission to impersonate the service account by dumping the current configuration.
 
     gcloud iam service-accounts get-iam-policy $SERVICE_ACCT_NAME@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com \
         --format=json > policy.json
 
-Then, update the `policy.json` file to grant permission to principles.
+Update the `policy.json` file to grant permission to principals.  Set `user:` to your account.
 
 
             {
